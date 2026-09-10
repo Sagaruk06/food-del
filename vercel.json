@@ -2,12 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
     "frontend": {
-      "root": "frontend/",
-      "framework": "vite"
+      "root": "frontend"
     },
     "admin": {
-      "root": "admin/",
-      "framework": "vite",
+      "root": "admin",
       "routes": [
         {
           "src": "/admin",
@@ -15,7 +13,57 @@
             {
               "type": "request.path",
               "op": "set",
-              "args": "/"
+              "args": "/index.html"
+            }
+          ]
+        },
+        {
+          "src": "/admin/add",
+          "transforms": [
+            {
+              "type": "request.path",
+              "op": "set",
+              "args": "/index.html"
+            }
+          ]
+        },
+        {
+          "src": "/admin/list",
+          "transforms": [
+            {
+              "type": "request.path",
+              "op": "set",
+              "args": "/index.html"
+            }
+          ]
+        },
+        {
+          "src": "/admin/orders",
+          "transforms": [
+            {
+              "type": "request.path",
+              "op": "set",
+              "args": "/index.html"
+            }
+          ]
+        },
+        {
+          "src": "/admin/assets/(.*)",
+          "transforms": [
+            {
+              "type": "request.path",
+              "op": "set",
+              "args": "/assets/$1"
+            }
+          ]
+        },
+        {
+          "src": "/admin/vite.svg",
+          "transforms": [
+            {
+              "type": "request.path",
+              "op": "set",
+              "args": "/vite.svg"
             }
           ]
         },
@@ -25,51 +73,45 @@
             {
               "type": "request.path",
               "op": "set",
-              "args": "/$1"
+              "args": "/index.html"
             }
           ]
         }
       ]
     },
     "backend": {
-      "root": "backend/",
-      "framework": "express",
+      "root": "backend",
       "entrypoint": "server.js"
     }
   },
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/:path*",
       "destination": {
-        "type": "service",
         "service": "backend"
       }
     },
     {
-      "source": "/images/(.*)",
+      "source": "/images/:path*",
       "destination": {
-        "type": "service",
         "service": "backend"
       }
     },
     {
       "source": "/admin",
       "destination": {
-        "type": "service",
         "service": "admin"
       }
     },
     {
       "source": "/admin/:path*",
       "destination": {
-        "type": "service",
         "service": "admin"
       }
     },
     {
       "source": "/(.*)",
       "destination": {
-        "type": "service",
         "service": "frontend"
       }
     }
