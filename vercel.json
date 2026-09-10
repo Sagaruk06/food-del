@@ -7,7 +7,29 @@
     },
     "admin": {
       "root": "admin/",
-      "framework": "vite"
+      "framework": "vite",
+      "routes": [
+        {
+          "src": "/admin",
+          "transforms": [
+            {
+              "type": "request.path",
+              "op": "set",
+              "args": "/"
+            }
+          ]
+        },
+        {
+          "src": "/admin/(.*)",
+          "transforms": [
+            {
+              "type": "request.path",
+              "op": "set",
+              "args": "/$1"
+            }
+          ]
+        }
+      ]
     },
     "backend": {
       "root": "backend/",
@@ -34,48 +56,14 @@
       "source": "/admin",
       "destination": {
         "type": "service",
-        "service": "admin",
-        "path": "/index.html"
+        "service": "admin"
       }
     },
     {
-      "source": "/admin/add",
+      "source": "/admin/:path*",
       "destination": {
         "type": "service",
-        "service": "admin",
-        "path": "/index.html"
-      }
-    },
-    {
-      "source": "/admin/list",
-      "destination": {
-        "type": "service",
-        "service": "admin",
-        "path": "/index.html"
-      }
-    },
-    {
-      "source": "/admin/orders",
-      "destination": {
-        "type": "service",
-        "service": "admin",
-        "path": "/index.html"
-      }
-    },
-    {
-      "source": "/admin/assets/(.*)",
-      "destination": {
-        "type": "service",
-        "service": "admin",
-        "path": "/assets/$1"
-      }
-    },
-    {
-      "source": "/admin/vite.svg",
-      "destination": {
-        "type": "service",
-        "service": "admin",
-        "path": "/vite.svg"
+        "service": "admin"
       }
     },
     {
