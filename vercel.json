@@ -19,30 +19,35 @@
     {
       "source": "/api/(.*)",
       "destination": {
+        "type": "service",
         "service": "backend"
       }
     },
     {
       "source": "/images/(.*)",
       "destination": {
+        "type": "service",
         "service": "backend"
       }
     },
     {
       "source": "/admin",
       "destination": {
+        "type": "service",
         "service": "admin"
       }
     },
     {
       "source": "/admin/(.*)",
       "destination": {
+        "type": "service",
         "service": "admin"
       }
     },
     {
       "source": "/(.*)",
       "destination": {
+        "type": "service",
         "service": "frontend"
       }
     }
