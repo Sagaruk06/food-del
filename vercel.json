@@ -8,15 +8,19 @@
       "root": "admin",
       "routes": [
         {
-          "src": "/assets/(.*)",
+          "src": "/admin/assets/(.*)",
           "dest": "/assets/$1"
         },
         {
-          "src": "/vite.svg",
+          "src": "/admin/vite.svg",
           "dest": "/vite.svg"
         },
         {
-          "src": "/(.*)",
+          "src": "/admin",
+          "dest": "/index.html"
+        },
+        {
+          "src": "/admin/(.*)",
           "dest": "/index.html"
         }
       ]
